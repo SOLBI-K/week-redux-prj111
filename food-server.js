@@ -7,11 +7,23 @@ app.listen(3355, ()=>{
     console.log("Server Start ...", "http://localhost:3355")
 })
 
+/*====================================================================
+*   npm run build 성공 후 주석.
+ ====================================================================*/
 // cross domain
-app.all('/*', function(req, res, next) {
+/*app.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
+});*/
+
+/*====================================================================
+*   npm run build 성공 후 추가 작성
+ ====================================================================*/
+const path=require("path");
+app.use("/", express.static('./public'));
+app.get('/', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
 
 const Client = require("mongodb").MongoClient;
